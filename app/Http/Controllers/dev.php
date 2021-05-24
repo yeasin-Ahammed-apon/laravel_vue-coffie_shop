@@ -10,15 +10,17 @@ class dev extends Controller
     public function home(){
         return view('welcome');
     }
-    public function all_data(){
-        $data=DB::table('coffies')->get();
-        return response()->json($data);
+
+    public function list(){
+        $db = DB::table('list')->get();
+        return response()->json($db);
 
     }
-    public function cake_info(Request $request, $id){
+    public function delete_list($id){
         
-        $a=DB::table('coffies')->where('id',$id)->first();
-        return response()->json($a);
-
+        DB::table('list')->where('id',$id)->delete();
+        return response()->json($id);
+        
     }
+    
 }
